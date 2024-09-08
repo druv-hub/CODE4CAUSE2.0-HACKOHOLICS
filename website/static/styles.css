@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: 'Kanit', system-ui;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 500px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px 40px;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #4c583f;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="email"], 
+input[type="password"],
+input[type="text"] {
+    outline: none;
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Kanit', system-ui;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4c583f;
+    font-family: 'Kanit', system-ui;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover {
+    background-color: #123e34;
+}
+
+p {
+    text-align: center;
+}
+
+a {
+    color: #4c583f;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.err{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    padding: 10px;
+    background-color: rgb(255, 75, 75);
+    color: white;
+}

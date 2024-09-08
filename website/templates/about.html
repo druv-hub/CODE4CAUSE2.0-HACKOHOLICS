@@ -1,0 +1,360 @@
+{<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvestic - Learn More</title>}
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- FontAwesome for icons -->
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #f4f4f4, #faf9f8); /* Light gradient */
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .header-logo {
+            max-width: 300px;
+            height: auto;
+        }
+
+        header p {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-transform: uppercase;
+            color: #4d774e;
+        }
+
+        main {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Aim Section */
+        .aim {
+            margin-bottom: 40px;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .aim h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .aim p {
+            font-size: 1.2em;
+            color: #555;
+            line-height: 1.8;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        /* Services Section */
+        .services {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #e6f7e6;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .services h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .service-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 45%;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card i {
+            font-size: 3em;
+            color: #4d774e;
+            margin-bottom: 10px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Features Section */
+        .features {
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .features h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .feature {
+            text-align: center;
+            width: 30%;
+            margin-bottom: 20px;
+            background-color: #f0f9f0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature i {
+            font-size: 2.5em;
+            color: #4d774e;
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Developer Section */
+        .devs h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .dev-team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dev {
+            text-align: center;
+            flex-basis: 30%;
+            margin-bottom: 20px;
+        }
+
+        .dev-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 1px solid #4d774e;
+        }
+
+        .dev h3 {
+            font-size: 1.5em;
+            color: #4c583f;
+        }
+
+        .dev p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        /* Social Media Icons */
+        .socials {
+            margin-top: 10px;
+        }
+
+        .socials a {
+            color: #4c583f;
+            font-size: 1.5em;
+            margin: 0 10px;
+        }
+
+        .socials a:hover {
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .service-card {
+                width: 90%;
+            }
+
+            .feature {
+                width: 80%;
+            }
+
+            .dev {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{url_for('static', filename='transparent.png')}}" alt="HARVESTIC Logo" class="header-logo">
+        <p>Smart Solutions for a Thriving Agricultural Ecosystem</p>
+    </header>
+
+    <main>
+        <section class="aim">
+            <h2>Our Aim</h2>
+            <p>Harvestic is dedicated to empowering farmers with smart, data-driven solutions for better decision-making, higher yields, and sustainable growth.</p>
+        </section>
+
+        <section class="services">
+            <h2>Our Services</h2>
+            <div class="service-cards">
+                <div class="service-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Personalized Crop Recommendations</h3>
+                    <p>Get tailored advice based on your farm's unique conditions for optimal crop growth and yield.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-cloud-sun-rain"></i>
+                    <h3>Access to Farm Management Tools</h3>
+                    <p>Utilize advanced tools to manage your farm operations efficiently and effectively.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Rental Equipment</h3>
+                    <p>Access a wide range of farm equipment for rent, reducing the need for heavy investments.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Farming Labor</h3>
+                    <p>Hire skilled labor to help with various farming tasks and operations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Our Features</h2>
+            <div class="feature-list">
+                <div class="feature">
+                    <i class="fas fa-tractor"></i>
+                    <h3>On-Demand Resources</h3>
+                    <p>Rent labor and equipment to meet your needs without heavy investments.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-seedling"></i>
+                    <h3>AI Crop Advice</h3>
+                    <p>Get crop recommendations based on local soil, climate, and market data.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-clock"></i>
+                    <h3>Smart Scheduling</h3>
+                    <p>Receive alerts and schedule farm tasks for optimal crop growth stages.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Farm Dashboard</h3>
+                    <p>Manage all farm operations from one intuitive dashboard.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-tools"></i>
+                    <h3>Predictive Maintenance</h3>
+                    <p>Track equipment health and get proactive support to avoid downtime.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainability Insights</h3>
+                    <p>Learn eco-friendly practices to reduce your farm's environmental impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="devs">
+            <h2>Meet the Developers</h2>
+            <div class="dev-team">
+                <div class="dev">
+                    <img src="{{url_for('static', filename='Aryan.jpg')}}" alt="Aryan Panwar" class="dev-photo">
+                    <h3>Aryan Panwar</h3>
+                    
+                    <div class="socials">
+                        <a href="https://www.linkedin.com/in/aryanpanwar893/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/ARYANPANWAR893" target="_blank"><i class="fab fa-github"></i></a>
+                        
+                        <a href="https://www.instagram.com/aryannpanwarr/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="dev">
+                    <img src="{{url_for('static', filename='Dhruv.jpg')}}" alt="Dhruv Goel" class="dev-photo">
+                    <h3>Dhruv Goel</h3>
+                    
+                    <div class="socials">
+                        <a href="https://www.linkedin.com/in/dhruv-goel/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/DhruvGoel" target="_blank"><i class="fab fa-github"></i></a>
+                        
+                        <a href="https://www.instagram.com/dhruvgoel" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="dev">
+                    <img src="{{url_for('static', filename='Chirag.jpg')}}" alt="Chirag Tuteja" class="dev-photo">
+                    <h3>Chirag Tuteja</h3>
+                    
+                    <div class="socials">
+                        <a href="https://www.linkedin.com/in/chiragtuteja/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/ChiragTuteja" target="_blank"><i class="fab fa-github"></i></a>
+                        
+                        <a href="https://www.instagram.com/chiragtuteja/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <a style="position: fixed; right: 30px; bottom: 30px; cursor: pointer;" href="/dashboard"><button class="land-btn" style="padding: 10px 20px; background-color: transparent; color: #4c583f; border: 3px solid #4c583f; border-radius: 5px; font-family: 'Kanit', system-ui; font-weight: 700; cursor: pointer;">Dashboard →</button></a>
+
+</body>
+</html>

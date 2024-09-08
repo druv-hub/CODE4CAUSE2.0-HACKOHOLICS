@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+
+<style>
+    .containers{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .container{
+        padding: 60px 100px;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.315);
+        border-radius: 13px;
+    }
+</style>
+<br><br><br><br>
+<h1 style="text-align: center; color: #3f4835; font-size: 42px;">Your Farms</h1>
+{% if farms == [] %}
+<h2 align="center"><a href="/new">Create your first farm</a></h2>
+{% endif %}
+<div class="containers">
+    {% for farm in farms %}
+    <a href="/farm/{{farm.id}}">
+    <div class="container">
+        <h2>Location</h2>
+    <div>{{farm.address}}, {{farm.district}}</div>
+    <div>{{farm.state}}📍</div>
+    <div>{{farm.land_area}} hectares</div>
+    </div>
+</a>
+    {% endfor %}
+</div>
+
+{% endblock %}

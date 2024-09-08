@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvestic - Create a New Farm</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f2f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 800px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-sizing: border-box;
+            border-left: 10px solid #164A41;
+        }
+
+        h1 {
+            color: #164A41;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-row label {
+            flex: 1;
+            text-align: right;
+            margin-right: 20px;
+            color: #333;
+        }
+
+        .form-row input[type="text"], 
+        .form-row input[type="number"], 
+        .form-row select {
+            flex: 2;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #164A41;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            outline: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0d3a30;
+        }
+
+    </style>
+    <div class="container">
+        <h1>Create a New Farm</h1>
+        <form id="farm-form" method="post">
+            <div class="form-row">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" placeholder="Enter farm address" required>
+            </div>
+
+            <div class="form-row">
+                <label for="state">State:</label>
+                <select id="state" name="state" required>
+                    <option value="" disabled selected>Select State</option>
+                    {% for state in states_and_uts_of_india %}
+                    <option value="{{state}}">{{state}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="district">District:</label>
+                <select id="district" name="district" required>
+                    <option value="" disabled selected>Select District</option>
+                    {% for state in districts_of_india %}
+                    <option value="{{state}}">{{state}}</option>
+                    {% endfor %}
+                    <!-- Add more districts as needed -->
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="area">Area:</label>
+                <input type="number" id="area" name="area" placeholder="Enter land area" required>
+                <select id="area-unit" name="area-unit" required>
+                    <option value="acres">Acres</option>
+                    <option value="hectares">Hectares</option>
+                    <option value="square-meters">Square Meters</option>
+                    <option value="square-feet">Square Feet</option>
+                </select>
+            </div>
+
+            <button type="submit">Save Farm</button>
+        </form>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const equipmentSearch = document.getElementById('equipment-search');
+        const equipmentList = document.getElementById('equipment-list');
+
+        const allEquipment = [
+            'Plow', 'Harrow', 'Cultivator', 'Disc harrow', 'Rototiller', 'Seeder', 'Planter', 
+            'Broadcast seeder', 'Irrigation system', 'Weeder', 'Fertilizer', 'Fertilizer injector', 
+            'Combine harvester', 'Reaper', 'Cotton picker', 'Fruit picker', 'Threshing machine', 
+            'Winnower', 'Grain dryer', 'Bale presser', 'Silo'
+        ];
+
+        equipmentSearch.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const suggestions = allEquipment.filter(equipment => equipment.toLowerCase().includes(query));
+            updateSuggestions(suggestions);
+        });
+
+        function updateSuggestions(suggestions) {
+            removeSuggestions();
+
+            if (suggestions.length > 0) {
+                const list = document.createElement('ul');
+                list.classList.add('suggestions');
+                
+                // Show only the top suggestion
+                const topSuggestion = suggestions[0];
+                const listItem = document.createElement('li');
+                listItem.textContent = topSuggestion;
+                listItem.addEventListener('click', () => addEquipment(topSuggestion));
+                list.appendChild(listItem);
+
+                equipmentSearch.parentNode.appendChild(list);
+            }
+        }
+
+        function removeSuggestions() {
+            const existingList = document.querySelector('.suggestions');
+            if (existingList) existingList.remove();
+        }
+
+        function addEquipment(equipment) {
+            if (Array.from(equipmentList.children).some(tag => tag.textContent.includes(equipment))) return;
+            
+            const tag = document.createElement('div');
+            tag.classList.add('equipment-tag');
+            tag.textContent = equipment;
+
+            const removeBtn = document.createElement('span');
+            removeBtn.textContent = 'X';
+            removeBtn.classList.add('remove-btn');
+            removeBtn.addEventListener('click', () => {
+                tag.remove();
+                removeSuggestions();  // Remove the suggestion list when an item is removed
+            });
+
+            tag.appendChild(removeBtn);
+            equipmentList.appendChild(tag);
+
+            equipmentSearch.value = '';
+            removeSuggestions();
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!equipmentSearch.contains(e.target) && !e.target.classList.contains('suggestions')) {
+                removeSuggestions();
+            }
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block title %}Manage Farm{% endblock %}
+{% block body %}
+
+<style>
+    .container{
+        padding: 30px;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.315);
+        border-radius: 13px;
+        width: 15%;
+        position: fixed;
+        margin: 10px;
+        right: 50px;
+    }
+    select{
+        padding: 10px 20px;
+        outline: none;
+        border-radius: 5px;
+        font-family: 'Kanit', system-ui;
+    }
+    button{
+        padding: 10px 20px;
+        outline: none;
+        border-radius: 5px;
+        font-family: 'Kanit', system-ui;
+        border: 2px solid transparent;
+        cursor: pointer;
+        background-color: #3f4835;
+        color: white;
+    }
+    h2,h3{
+        margin-bottom: 2px;
+    }
+    h3{
+        margin-top: 2px;
+    }
+    .cont{
+        padding: 30px;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.315);
+        border-radius: 13px;
+        width: 15%;
+        margin-left: 50px;
+    }
+</style>
+<br><br><br><br>
+
+<h1 style="text-align: center; color: #3f4835; font-size: 42px;">Manage Farm</h1>
+
+<div class="container">
+    {% if crop %}
+    <h2>Plant Type</h2>
+    <div>{{crop.plant_name}}</div>
+    {% endif %}
+    {% if farm.soil != "" %}
+    <h2>Soil Type</h2>
+    <div>{{farm.soil}}</div>
+    {% endif %}
+    <h2>Location</h2>
+    <div>{{farm.address}}, {{farm.district}}</div>
+    <div>{{farm.state}}📍</div>
+    <h2>Land Area</h2>
+    <div>{{farm.land_area}} hectares</div>
+</div>
+{% if farm.soil == "" %}
+<div class="container" style="left: 50px; width: 65%;">
+    <h2>Select soil type</h2>
+    <form action="/farm/{{farm.id}}/set-soil" method="post">
+        <select id="soil-type" name="soil" required>
+            <option value="" disabled selected>Select Soil Type</option>
+            {% for soil in suggested %}
+            <option value="{{soil}}">{{soil}} (AI Recommends✨)</option>
+            {% endfor %}]
+            {% for soil in total %}
+            <option value="{{soil}}">{{soil}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Select</button>
+    </form>
+</div>
+{% elif not crop %}
+<div class="container" style="left: 50px; width: 65%;">
+    <h2>Select Crop</h2>
+    <form action="/farm/{{farm.id}}/set-plant" method="post">
+        <select id="soil-type" name="crop" required>
+            <option value="" disabled selected>Select from Crops Recommended by AI✨</option>
+            {% for soil in crops %}
+            <option value="{{soil}}">{{soil}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Select</button>
+    </form>
+</div>
+{% else %}
+<div class="cont" style="margin-left: 50px; width: 65%;">
+    <h2>Yearly Expenses and Revenue</h2><br>
+    <div style="display: flex; align-items: center; justify-content: space-evenly; flex-wrap: wrap;">
+    <div class="container" style="width: 35%; position: relative;">
+        <h2>Seeding Cost</h2>
+        Rs. {{costing(crop.plant_name, farm.land_area)[0]}} 
+    </div>
+    <div class="container" style="width: 35%; position: relative; ">
+        <h2> Estimated Revenue</h2>
+        Rs. {{costing(crop.plant_name, farm.land_area)[1]}} 
+    </div>
+    <div class="container" style="width: 35%; position: relative; ">
+        <h2> Labour Cost</h2>
+        Rs. {{round(farm.land_area/2)}} - {{round(farm.land_area/1)}} Lacs
+    </div>
+    <div class="container" style="width: 35%; position: relative; ">
+        <h2> Equipment Cost</h2>
+        Rs. 15 - 25 Lacs
+    </div>
+</div>
+<br>
+</div>
+<br><br>
+<div class="cont" style="left: 50px; width: 65%;">
+    <h2>Time period for one cropping season</h2><br>
+    {% for process in processtime(crop.plant_name) %}
+    <strong>{{process}} : </strong> {{processtime(crop.plant_name)[process]}} days <br>
+    {% endfor %}
+    <h3>Total : {{sum(processtime(crop.plant_name).values())}} days</h3>
+</div>
+<br><br>
+<div class="cont" style="left: 50px; width: 65%;">
+    <h2>Labour Information</h2>
+    <h3 style="font-weight: 400;">Yearly expense of a labourer : 1-2 Lacs per annum</h3>
+    <h3 style="font-weight: 400;" >Without modern equipments : 0.5-1 hectare/labourer</h3>
+    <h3 style="font-weight: 400;" >With modern equipments : 5-10 hectare/labourer</h3>
+    <h3 style="font-weight: 400;" >Labourers required for your land : {{round(farm.land_area/2)}}</h3>
+</div>
+<br><br>
+<div class="cont" style="left: 50px; width: 65%;">
+    <h2>To reduce your expenses futher and maximise your yield with extended comfort, you can avail our services</h2><br>
+    <button>Equipment Rental Service</button>
+    <a href="/assist"><button>Professional Agricultural Assistance</button></a>
+</div><br>
+<a href="/delete/{{farm.id}}">
+<button style="background-color: red; margin-left: 50px;">Delete Farm</button>
+</a>
+</div>
+<br><br>
+{% endif %}
+
+{% endblock %}
